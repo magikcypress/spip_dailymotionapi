@@ -42,7 +42,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'titre_dailymotionapi' => 'Configuration du plugin dailymotionapi',
     'titre_envoyer_dailymotionapi' => 'Envoyer un fichier sur dailymotionapi',
     'titre_envoyer_video_dailymotionapi' => 'Envoyer une vidéo sur dailymotionapi',
-    'titre_liste_dailymotionapi' => 'Liste de vidéo sur dailymotionapi',
+    'titre_liste_dailymotionapi' => 'Liste des vidéos sur dailymotionapi',
     'titre_playliste_dailymotionapi' => 'Playlist sur dailymotionapi',
 
     // U

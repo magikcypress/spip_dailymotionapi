@@ -69,15 +69,8 @@ function formulaires_upload_dailymotionapi_verifier_dist(){
 **/
 function formulaires_upload_dailymotionapi_traiter_dist(){
 
-    include_spip('inc/config');
-    $username = lire_config('dailymotionapi/username_dailymotionapi');
-    $password = lire_config('dailymotionapi/password_dailymotionapi');
-    $user_id = lire_config('dailymotionapi/user_id_dailymotionapi');
-    $api_key = lire_config('dailymotionapi/api_key_dailymotionapi');
-    include_once(_DIR_PLUGIN_DAILYMOTIONAPI."lib/dailymotion-sdk-php/Dailymotion.php");
-
-    $api = new Dailymotion();
-    $api->setGrantType(Dailymotion::GRANT_TYPE_PASSWORD, $user_id, $api_key, array('write','delete'), array('username' => $username, 'password' => $password)); 
+    include_spip('dailymotionapi_fonctions');
+    $api = dailymotionapi_config();
 
     if (isset($_FILES['fichier']) AND $_FILES['fichier']['tmp_name']) {
         include_spip('action/ajouter_documents');
@@ -100,7 +93,7 @@ function formulaires_upload_dailymotionapi_traiter_dist(){
         spip_log($videourl, 'test.' . _LOG_ERREUR);
     }
         
-    return array('editable' => true, 'message_ok'=>_T('upload_info_enregistree'));
+    return array('editable' => true, 'message_ok'=>_T('dailymotionapi:upload_info_enregistree'));
 }
 
 ?>
