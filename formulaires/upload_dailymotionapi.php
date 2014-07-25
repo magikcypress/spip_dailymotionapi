@@ -26,15 +26,9 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 function formulaires_upload_dailymotionapi_charger_dist(){
 
     $valeurs = array();
-    include_spip('inc/config');
-    $username = lire_config('dailymotionapi/username_dailymotionapi');
-    $password = lire_config('dailymotionapi/password_dailymotionapi');
-    $user_id = lire_config('dailymotionapi/user_id_dailymotionapi');
-    $api_key = lire_config('dailymotionapi/api_key_dailymotionapi');
-    include_once(_DIR_PLUGIN_DAILYMOTIONAPI."lib/dailymotion-sdk-php/Dailymotion.php");
+    include_spip('dailymotionapi_fonctions');
+    $api = dailymotionapi_config();
 
-    $api = new Dailymotion();
-    $api->setGrantType(Dailymotion::GRANT_TYPE_PASSWORD, $user_id, $api_key, array('write','delete'), array('username' => $username, 'password' => $password)); 
     $result = $api->get('/channels', array('fields' => 'id,name'));
     
     $i=0;

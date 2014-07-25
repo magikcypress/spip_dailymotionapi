@@ -1,0 +1,38 @@
+<BOUCLE_liste_dailymotionapi(DATA){source table, #REM|dailymotionapi_recup_video}>
+<table>
+    <tr>
+        <td>
+        <h2>Version HTML</h2>
+            <iframe src="http://www.dailymotion.com/embed/video/[(#VALEUR{id})]" width="100%" height="100%" frameborder="0"></iframe>
+        </td>
+
+        <td>
+            <h2>Version Javascript</h2>
+            <!-- This <div> tag will be replaced the <iframe> video player -->
+            <div id="player"></div>
+
+            <script>
+                // This code loads the Dailymotion Javascript SDK asynchronously.
+                (function() {
+                    var e = document.createElement('script'); e.async = true;
+                    e.src = document.location.protocol + '//api.dmcdn.net/all.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(e, s);
+                }());
+
+                // This function init the player once the SDK is loaded
+                window.dmAsyncInit = function()
+                {
+                    // PARAMS is a javascript object containing parameters to pass to the player if any (eg: {autoplay: 1})
+                    var player = DM.player("player", {video: "[(#VALEUR{id})]", width: "100%", height: "100%", params: {autoplay: 0}});
+
+                    // 4. We can attach some events on the player (using standard DOM events)
+                    player.addEventListener("apiready", function(e)
+                    {
+                        e.target.play();
+                    });
+                };
+            </script>
+        </td>
+    </tr>
+</table>
+</BOUCLE_liste_dailymotionapi>
