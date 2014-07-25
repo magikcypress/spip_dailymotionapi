@@ -1,0 +1,48 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><img src="#CHEMIN_IMAGE{dailymotionapi-24.png}" class="cadre-icone" /><:dailymotionapi:titre_envoyer_dailymotionapi:>#AIDER{confdailymotionapi}</h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <BOUCLE_editable(CONDITION){si #ENV{editable}}>
+    <form method='post' action='#ENV{action}' enctype='multipart/form-data'><div>
+        [(#REM) declarer les hidden qui declencheront le service du formulaire
+        parametre : url d'action ]
+        #ACTION_FORMULAIRE{#ENV{action}}
+        <ul>
+            #SET{fichier,fichier}
+            #SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{fichier}}}
+            <li class="editer long_label[ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                <label for="#GET{name}"><:dailymotionapi:label_fichier_dailymotionapi:></label>[
+                <span class='erreur_message'>(#GET{erreurs})</span>
+                ]<div class="choix">
+                        <label for="titre"><:dailymotionapi:label_nom_fichier_dailymotionapi:></label>
+                        <input type="name" name="titre" id="titre" value="#ENV{titre}" />
+                </div>
+                <div class="choix">
+                        <label for="categorie"><:dailymotionapi:label_categorie_dailymotionapi:></label>
+                        <select name="categorie">
+                            <BOUCLE_categorie(POUR){tableau #ENV{categorie}}>
+                                [<option value="[(#VALEUR|table_valeur{id})]">(#VALEUR|table_valeur{name})</option>]
+                            </BOUCLE_categorie>
+                        </select>
+                </div>
+                <div class="choix">
+                        <label for="tags"><:dailymotionapi:label_tags_dailymotionapi:></label>
+                        <input type="tags" name="tags" id="tags" value="#ENV{tags}" placeholder="Ajouter un tag" />
+                </div>
+                <div class="choix">
+                        <label for="description"><:dailymotionapi:label_description_dailymotionapi:></label>
+                        <textarea name="description" rows="5" cols="40">#ENV{#GET{description}}</textarea>
+                </div>
+                <div class="choix">
+                        <label for="#GET{fichier}"><:dailymotionapi:label_source_dailymotionapi:></label>
+                        <input type="file" name="#GET{fichier}" id="#GET{fichier}" value="#ENV{#GET{fichier}}" />
+                </div>
+            </li>
+        </ul>
+
+    [(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+    <!--extra-->
+    <p class='boutons'><span class='image_loading'>&nbsp;</span><input type='submit' class='submit' value='<:bouton_enregistrer:>' /></p>
+    </div></form>
+    </BOUCLE_editable>
+</div>

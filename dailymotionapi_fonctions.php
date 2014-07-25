@@ -1,0 +1,94 @@
+<?php
+/**
+ * Utilisations de fonctions par dailymotionapi
+ *
+ * @plugin     dailymotionapi
+ * @copyright  2014
+ * @author     vincent
+ * @licence    GNU/GPL
+ * @package    SPIP\dailymotionapi\Pipelines
+ */
+
+if (!defined("_ECRIRE_INC_VERSION")) return;
+
+function dailymotionapi_recup_public_video() {
+
+    include_spip('inc/config');
+    $user_id = lire_config('dailymotionapi/user_id_dailymotionapi');
+    $api_key = lire_config('dailymotionapi/api_key_dailymotionapi');
+    include_once(_DIR_PLUGIN_DAILYMOTIONAPI."lib/dailymotion-sdk-php/Dailymotion.php");
+
+    $api = new Dailymotion();
+    $api->setGrantType(Dailymotion::GRANT_TYPE_CLIENT_CREDENTIALS, $user_id, $api_key);
+    $result = $api->get('/videos', array('fields' => 'id,title,description'));
+    $i=0;
+    foreach($result as $media) {
+        $list_dailymotionapi[] = array(
+                'id' => $result['list'][$i]['id'], 
+                'titre' => $result['list'][$i]['title'],
+                'description' => $result['list'][$i]['description']);
+        $i++;
+    }
+
+    return $list_dailymotionapi;
+
+}
+
+function dailymotionapi_recup_video() {
+
+    include_spip('inc/config');
+    $username = lire_config('dailymotionapi/username_dailymotionapi');
+    $password = lire_config('dailymotionapi/password_dailymotionapi');
+    $user_id = lire_config('dailymotionapi/user_id_dailymotionapi');
+    $api_key = lire_config('dailymotionapi/api_key_dailymotionapi');
+    include_once(_DIR_PLUGIN_DAILYMOTIONAPI."lib/dailymotion-sdk-php/Dailymotion.php");
+
+    $api = new Dailymotion();
+    $api->setGrantType(Dailymotion::GRANT_TYPE_PASSWORD, $user_id, $api_key, $scope = array('manage_videos'),
+                       array('username' => $username, 'password' => $password));
+    $result = $api->get('/me/videos', array('fields' => 'id,title,url,owner.screenname,owner.url,created_time,channel'));
+
+    $i=0;
+    while ($i <= count($result)) {
+        $list_dailymotionapi[] = array(
+                'id' => $result['list'][$i]['id'], 
+                'titre' => $result['list'][$i]['title'],
+                'creer' => strftime("%c", $result['list'][$i]['created_time']),
+                'url' => $result['list'][$i]['url'],
+                'auteur' => $result['list'][$i]['owner.screenname'],
+                'url_auteur' => $result['list'][$i]['owner.url'],
+                'categorie' => $result['list'][$i]['channel']);
+        $i++;
+    }
+
+    return $list_dailymotionapi;
+
+}
+
+function dailymotionapi_playlist_video() {
+
+    include_spip('inc/config');
+    $username = lire_config('dailymotionapi/username_dailymotionapi');
+    $password = lire_config('dailymotionapi/password_dailymotionapi');
+    $user_id = lire_config('dailymotionapi/user_id_dailymotionapi');
+    $api_key = lire_config('dailymotionapi/api_key_dailymotionapi');
+    include_once(_DIR_PLUGIN_DAILYMOTIONAPI."lib/dailymotion-sdk-php/Dailymotion.php");
+
+    $api = new Dailymotion();
+    $api->setGrantType(Dailymotion::GRANT_TYPE_PASSWORD, $user_id, $api_key, $scope = array('manage_videos'),
+                       array('username' => $username, 'password' => $password));
+    $result = $api->get('/playlists', array('fields' => 'id,name,description,owner.username'));
+
+    $i=0;
+    while ($i <= count($result)) {
+        $playlist_dailymotionapi[] = array(
+                'id' => $result['list'][$i]['id'], 
+                'nom' => $result['list'][$i]['name'],
+                'description' => $result['list'][$i]['description'],
+                'auteur' => $result['list'][$i]['owner.username']);
+        $i++;
+    }
+
+    return $playlist_dailymotionapi;
+
+}

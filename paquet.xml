@@ -1,0 +1,22 @@
+<paquet
+    prefix="dailymotionapi"
+    categorie="multimedia"
+    version="1.0.0"
+    etat="dev"
+    compatibilite="[3.0.10;3.0.*]"
+    logo="prive/themes/spip/images/dailymotionapi-64.png"
+    documentation=""
+>
+
+    <nom>dailymotionapi</nom>
+    <!--Ce plugin permet de jouer avec l'API de dailymotion-->
+
+    <auteur>vincent</auteur>
+
+    <licence>GNU/GPL</licence>
+
+    <menu nom="dailymotionapi_configuration" titre="dailymotionapi:icone_dailymotionapi_configuration" parent="menu_configuration" icone="images/dailymotionapi-16.png" action="configurer_dailymotionapi" />
+    <menu nom="dailymotionapi_list" titre="dailymotionapi:icone_dailymotionapi_lister" parent="menu_edition" icone="images/dailymotionapi-16.png" action="liste_dailymotionapi" />
+    <menu nom="dailymotionapi_playlist" titre="dailymotionapi:icone_dailymotionapi_playlister" parent="menu_edition" icone="images/dailymotionapi-16.png" action="playliste_dailymotionapi" />
+    <menu nom="dailymotionapi_upload" titre="dailymotionapi:icone_dailymotionapi_upload" parent="menu_edition" icone="images/dailymotionapi-16.png" action="upload_dailymotionapi" />
+</paquet>

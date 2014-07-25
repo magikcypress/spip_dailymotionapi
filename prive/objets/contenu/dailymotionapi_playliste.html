@@ -1,0 +1,26 @@
+<B_liste_dailymotionapi>
+<div class="liste-objets sites syndic">
+<table class='spip liste'>
+    <thead>
+        <tr class='first_row'>
+            <th scope='col'><:dailymotionapi:item_id:></th>
+            <th scope='col'><:dailymotionapi:item_titre:></th>
+            <th scope='col'><:dailymotionapi:item_description:></th>
+            <th scope='col'><:dailymotionapi:item_auteur:></th>
+        </tr>
+    </thead>
+    <tbody>
+    <BOUCLE_liste_dailymotionapi(DATA){source table, #REM|dailymotionapi_playlist_video}>
+        <tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
+            <td><a href="[(#VALEUR{url})]" title="[(#VALEUR{id})]">#COMPTEUR_BOUCLE</a></td>
+            <td><a href="[(#VALEUR{url})]">[(#VALEUR{nom})]</a></td>
+            <td>[(#VALEUR{description})]</td>
+            <td><a href="[(#VALEUR{url_auteur})]">[(#VALEUR{auteur})]</a></td>
+        </tr>
+    </BOUCLE_liste_dailymotionapi>
+    </tbody>
+</table>
+</div>
+</B_liste_dailymotionapi>[
+<div class="liste-objets sites caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_dailymotionapi>
