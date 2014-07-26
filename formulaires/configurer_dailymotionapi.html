@@ -4,38 +4,38 @@
     [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
     [(#ENV{editable})
     <p><:dailymotionapi:texte_dailymotionapi:></p>
-    <form method='post' action='#ENV{action}'><div>
+    <form method='post' action='#ENV{action}'>
+    <div>
         [(#REM) declarer les hidden qui declencheront le service du formulaire
         parametre : url d'action ]
         #ACTION_FORMULAIRE{#ENV{action}}
-        <ul>
 
             #SET{username,username_dailymotionapi}
             #SET{password,password_dailymotionapi}
-            #SET{user_id,user_id_dailymotionapi}
             #SET{api_key,api_key_dailymotionapi}
+            #SET{api_secret_key,api_secret_key_dailymotionapi}
             #SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{api_key}}}
-            <li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                <label for="#GET{name}"><:dailymotionapi:configurer_dailymotionapi:></label>[
-                <span class='erreur_message'>(#GET{erreurs})</span>
-                ]<div class="choix">
-                        <label for="username"><:dailymotionapi:form_username:></label>
-                        <input type="text" name="#GET{username}" id="#GET{username}" value="#ENV{#GET{username}}" />
-                    </div>
-                    <div class="choix">
-                        <label for="password"><:dailymotionapi:form_password:></label>
-                        <input type="text" name="#GET{password}" id="#GET{password}" value="#ENV{#GET{password}}" />
-                    </div>
-                <div class="choix">
-                        <label for="#GET{user_id}"><:dailymotionapi:form_user_id:></label>
-                        <input type="text" name="#GET{user_id}" id="#GET{user_id}" value="#ENV{#GET{user_id}}" />
-                    </div>
-                    <div class="choix">
-                        <label for="#GET{api_key}"><:dailymotionapi:form_api_key:></label>
-                        <input type="text" name="#GET{api_key}" id="#GET{api_key}" value="#ENV{#GET{api_key}}" />
-                    </div>
-            </li>
-        </ul>
+            <div class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
+                <span class='erreur_message'>(#GET{erreurs})</span>]
+            </div>
+            <ul>
+                <li>
+                    <label for="username"><:dailymotionapi:form_username:></label>
+                    <input type="text" name="#GET{username}" id="#GET{username}" value="#ENV{#GET{username}}" />
+                </li>
+                <li>
+                    <label for="password"><:dailymotionapi:form_password:></label>
+                    <input type="text" name="#GET{password}" id="#GET{password}" value="#ENV{#GET{password}}" />
+                </li>
+                <li>
+                    <label for="#GET{api_key}"><:dailymotionapi:form_api_key:></label>
+                    <input type="text" name="#GET{api_key}" id="#GET{api_key}" value="#ENV{#GET{api_key}}" />
+                </li>
+                <li>
+                    <label for="#GET{api_secret_key}"><:dailymotionapi:form_api_secret_key:></label>
+                    <input type="text" name="#GET{api_secret_key}" id="#GET{api_secret_key}" value="#ENV{#GET{api_secret_key}}" />
+                </li>
+            </ul>
 
     [(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
     <!--extra-->

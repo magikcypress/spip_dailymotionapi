@@ -16,12 +16,12 @@ function dailymotionapi_config() {
     include_spip('inc/config');
     $username = lire_config('dailymotionapi/username_dailymotionapi');
     $password = lire_config('dailymotionapi/password_dailymotionapi');
-    $user_id = lire_config('dailymotionapi/user_id_dailymotionapi');
     $api_key = lire_config('dailymotionapi/api_key_dailymotionapi');
+    $api_secret_key = lire_config('dailymotionapi/api_secret_key_dailymotionapi');
     include_once(_DIR_PLUGIN_DAILYMOTIONAPI."lib/dailymotion-sdk-php/Dailymotion.php");
 
     $api = new Dailymotion();
-    $api->setGrantType(Dailymotion::GRANT_TYPE_PASSWORD, $user_id, $api_key, $scope = array('manage_videos'), array('username' => $username, 'password' => $password));
+    $api->setGrantType(Dailymotion::GRANT_TYPE_PASSWORD, $api_key, $api_secret_key, $scope = array('manage_videos'), array('username' => $username, 'password' => $password));
 
     return $api;
 }

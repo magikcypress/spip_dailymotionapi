@@ -11,15 +11,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     // F
     'form_username' => 'Nom d\'utilisateur',
     'form_password' => 'Mot de passe',
-    'form_user_id' => 'Clé secrète d\'API ',
+    'form_api_secret_key' => 'Clé secrète d\'API ',
     'form_api_key' => 'Clé d\'API',
-    'form_user_id' => 'Clé secrète d\'API ',
 
     // I
     'icone_dailymotionapi_configuration' => 'Configurer dailymotionapi',
     'icone_dailymotionapi_lister' => 'Liste des vidéos dailymotionapi',
     'icone_dailymotionapi_upload' => 'Envoyer des vidéos sur dailymotionapi',
-    'icone_dailymotionapi_playlister' => 'Liste des playlist dailymotionapi',
+    'icone_dailymotionapi_playlister' => 'Liste des playlists dailymotionapi',
     'item_auteur' => 'Auteur',
     'item_description' => 'Description',
     'item_categorie' => 'Catégorie',
